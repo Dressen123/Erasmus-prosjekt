@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-[gd_scene format=3 uid="uid://cuibg8hxgjnug"]
-
-[node name="Player" type="Node2D"]
-=======
-[gd_scene format=3 uid="uid://qhfmxf4tq4qn"]
-
-[node name="player" type="Node2D"]
->>>>>>> 83995561bd949965b271c5bc2290021c2ea1fedc
