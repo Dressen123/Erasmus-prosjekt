@@ -4,9 +4,9 @@ var speed: float = 65
 var attacking = false
 var direction = "down"
 
-#func _ready():
-	#$sword.visible = false
-	#$sword/CollisionShape2D.disabled = false
+func _ready():
+	$weapon/sword.visible = false
+	$weapon/sword/swordCollision.disabled = false
 
 func input():
 	var movement = Input.get_vector("left", "right", "up", "down")
@@ -14,17 +14,17 @@ func input():
 	update_animation(movement)
 
 	if Input.is_action_just_pressed("interact"):
-		#$animation_tool.play("interact" + direction)
+		$swordAnimation.play("attack" + direction)  
 		attacking = true
-		#await $animation_tool.animation_finished
+		await $swordAnimation.animation_finished
 		attacking = false
 
-	#if attacking:
-		#$sword.visible = true
-		#$sword/CollisionShape2D.disabled = false
-	#else:
-		#$sword.visible = false
-		#$sword/CollisionShape2D.disabled = true
+	if attacking:
+		$weapon/sword.visible = true
+		$weapon/sword/swordCollision.disabled = false
+	else:
+		$weapon/sword.visible = false
+		$weapon/sword/swordCollision.disabled = true
 
 func update_animation(movement):
 	if movement.length() == 0:
