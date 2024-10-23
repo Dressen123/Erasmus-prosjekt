@@ -215,12 +215,10 @@ animation = &"idle"
 frame_progress = 0.0309623
 
 [node name="playerCollision" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_xs8ss")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-visible = false
 zoom = Vector2(10, 10)
 
 [node name="weapon" type="Node2D" parent="."]
