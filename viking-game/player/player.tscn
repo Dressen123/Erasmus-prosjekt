@@ -229,4 +229,3 @@ rotation = 1.5708
 
 [node name="sword" parent="weapon" instance=ExtResource("3_o85gs")]
 position = Vector2(0, -13)
-script = null
