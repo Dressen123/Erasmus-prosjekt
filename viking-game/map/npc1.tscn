@@ -1,0 +1,93 @@
+[gd_scene load_steps=9 format=3 uid="uid://bunqvo2jvkjqk"]
+
+
+[ext_resource type="Texture2D" uid="uid://b7ug5ooqij0g5" path="res://map og npc/Villager 3 spritesheet.png" id="2_x2w8r"]
+
+
+[sub_resource type="GDScript" id="GDScript_uln5o"]
+script/source = "extends CharacterBody2D
+
+
+var speed= 40
+var player_chase = false
+var player = null
+
+func _physics_process(delta):
+	if player_chase:
+		position += (player.position - position)/speed
+		
+		$AnimatedSprite2D.play(\"walking\")
+		
+		if(player.position.x - position.x) < 0:
+			$AnimatedSprite2D.flip_h = true
+		else:
+			$AnimatedSprite2D.flip_h = false
+	else:
+		$AnimatedSprite2D.play(\"idle\")
+
+func _on_detection_body_entered(body: Node2D) -> void:
+	player = body
+	player_chase = true
+
+
+func _on_detection_body_exited(body: Node2D) -> void:
+	player = null
+	player_chase = false
+	
+"
+
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur24m"]
+atlas = ExtResource("2_x2w8r")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5ehm"]
+atlas = ExtResource("2_x2w8r")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h3gm"]
+atlas = ExtResource("2_x2w8r")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d64rs"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ur24m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5ehm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h3gm")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_255yq"]
+radius = 37.054
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8pwd6"]
+radius = 7.0
+
+[node name="npc" type="CharacterBody2D"]
+script = SubResource("GDScript_uln5o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_d64rs")
+animation = &"walking"
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_255yq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8pwd6")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

@@ -4,35 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://7em67y7g46ym" path="res://player/frames.png" id="1_wfha8"]
 [ext_resource type="PackedScene" uid="uid://cua646plv1i3" path="res://player/sword.tscn" id="3_o85gs"]
 
-[sub_resource type="Animation" id="Animation_flrjs"]
-resource_name = "attackdown"
-length = 0.3
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../weapon:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../weapon:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [1.5708, 3.14159, 4.71239]
-}
-
 [sub_resource type="Animation" id="Animation_cisye"]
 length = 0.001
 tracks/0/type = "value"
@@ -60,8 +31,8 @@ tracks/1/keys = {
 "values": [1.5708]
 }
 
-[sub_resource type="Animation" id="Animation_jyjl8"]
-resource_name = "attackup"
+[sub_resource type="Animation" id="Animation_flrjs"]
+resource_name = "attackdown"
 length = 0.3
 step = 0.1
 tracks/0/type = "value"
@@ -86,7 +57,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [-1.5708, 0.0, 1.5708]
+"values": [1.5708, 3.14159, 4.71239]
 }
 
 [sub_resource type="Animation" id="Animation_wk051"]
@@ -145,6 +116,35 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [0.0, 1.5708, 3.14159]
+}
+
+[sub_resource type="Animation" id="Animation_jyjl8"]
+resource_name = "attackup"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../weapon:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../weapon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [-1.5708, 0.0, 1.5708]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tj3pc"]
