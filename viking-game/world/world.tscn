@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbad1g5fko5uj"]
+
+[ext_resource type="PackedScene" uid="uid://di3c4uvs8tg3e" path="res://player/player.tscn" id="1_fl1nv"]
+[ext_resource type="PackedScene" uid="uid://bunqvo2jvkjqk" path="res://world/npc1.tscn" id="2_qwabd"]
+
+[node name="world" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_fl1nv")]
+position = Vector2(114, 119)
+
+[node name="npc1" parent="." instance=ExtResource("2_qwabd")]
+position = Vector2(139, 48)
+
+[node name="npc2" parent="." instance=ExtResource("2_qwabd")]
+position = Vector2(200, 139)
+
+[node name="npc3" parent="." instance=ExtResource("2_qwabd")]
+position = Vector2(238, 52)

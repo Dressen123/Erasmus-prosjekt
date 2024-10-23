@@ -1,41 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bunqvo2jvkjqk"]
+[gd_scene load_steps=11 format=3 uid="uid://bunqvo2jvkjqk"]
 
+[ext_resource type="Script" path="res://world/npc.gd" id="2_ori4p"]
+[ext_resource type="Texture2D" uid="uid://b7ug5ooqij0g5" path="res://world/Villager3.png" id="2_x2w8r"]
 
-[ext_resource type="Texture2D" uid="uid://b7ug5ooqij0g5" path="res://map og npc/Villager 3 spritesheet.png" id="2_x2w8r"]
-
-
-[sub_resource type="GDScript" id="GDScript_uln5o"]
-script/source = "extends CharacterBody2D
-
-
-var speed= 40
-var player_chase = false
-var player = null
-
-func _physics_process(delta):
-	if player_chase:
-		position += (player.position - position)/speed
-		
-		$AnimatedSprite2D.play(\"walking\")
-		
-		if(player.position.x - position.x) < 0:
-			$AnimatedSprite2D.flip_h = true
-		else:
-			$AnimatedSprite2D.flip_h = false
-	else:
-		$AnimatedSprite2D.play(\"idle\")
-
-func _on_detection_body_entered(body: Node2D) -> void:
-	player = body
-	player_chase = true
-
-
-func _on_detection_body_exited(body: Node2D) -> void:
-	player = null
-	player_chase = false
-	
-"
-
+[sub_resource type="AtlasTexture" id="AtlasTexture_0ch46"]
+atlas = ExtResource("2_x2w8r")
+region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ur24m"]
 atlas = ExtResource("2_x2w8r")
@@ -53,6 +23,14 @@ region = Rect2(0, 16, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0ch46")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ur24m")
 }, {
 "duration": 1.0,
@@ -62,32 +40,42 @@ animations = [{
 "texture": SubResource("AtlasTexture_0h3gm")
 }],
 "loop": true,
-"name": &"walking",
+"name": &"run",
 "speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_255yq"]
 radius = 37.054
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8pwd6"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_qx4ke"]
 
-[node name="npc" type="CharacterBody2D"]
-script = SubResource("GDScript_uln5o")
+[sub_resource type="CircleShape2D" id="CircleShape2D_8mppp"]
+radius = 8.06226
+
+[node name="npc1" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("2_ori4p")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_d64rs")
-animation = &"walking"
+animation = &"idle"
 
 [node name="Detection" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
 shape = SubResource("CircleShape2D_255yq")
 
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_qx4ke")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8pwd6")
+light_mask = 4
+visibility_layer = 4
+shape = SubResource("CircleShape2D_8mppp")
 
 [connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
 [connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

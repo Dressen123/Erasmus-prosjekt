@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://d3jwcy8f7kamy"]
+
+[ext_resource type="Texture2D" uid="uid://btcm2xsnvv274" path="res://world/Villager1.png" id="1_6ahmm"]
+[ext_resource type="Script" path="res://world/npc.gd" id="2_j80a1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kk44f"]
+atlas = ExtResource("1_6ahmm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j5uy"]
+atlas = ExtResource("1_6ahmm")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_72bs6"]
+atlas = ExtResource("1_6ahmm")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gafal"]
+atlas = ExtResource("1_6ahmm")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qu8nl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kk44f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j5uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_72bs6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gafal")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rapm8"]
+radius = 33.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vul2f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_asx34"]
+radius = 8.06226
+
+[node name="npc2" type="CharacterBody2D"]
+collision_layer = 3
+script = ExtResource("2_j80a1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qu8nl")
+animation = &"idle"
+
+[node name="Detection" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_rapm8")
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_vul2f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 4
+shape = SubResource("CircleShape2D_asx34")
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_detection_body_exited"]

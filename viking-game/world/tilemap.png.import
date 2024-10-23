@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7ug5ooqij0g5"
-path="res://.godot/imported/Villager3.png-1dbf8ec93d7bbdda27eb46717c641f8b.ctex"
+uid="uid://ba4l5yl7decp"
+path="res://.godot/imported/tilemap.png-8c2d51fcf126c38178c0e7f8a98c31e5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://map/Villager3.png"
-dest_files=["res://.godot/imported/Villager3.png-1dbf8ec93d7bbdda27eb46717c641f8b.ctex"]
+source_file="res://world/tilemap.png"
+dest_files=["res://.godot/imported/tilemap.png-8c2d51fcf126c38178c0e7f8a98c31e5.ctex"]
 
 [params]
 

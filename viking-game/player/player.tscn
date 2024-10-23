@@ -201,6 +201,8 @@ animations = [{
 size = Vector2(11, 16)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_8fymo")
 
 [node name="swordAnimation" type="AnimationPlayer" parent="."]
@@ -211,15 +213,11 @@ libraries = {
 
 [node name="playerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qdlq2")
-animation = &"idle"
-frame_progress = 0.0309623
+animation = &"run"
 
 [node name="playerCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_xs8ss")
-
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(10, 10)
 
 [node name="weapon" type="Node2D" parent="."]
 position = Vector2(1, 0)
@@ -227,3 +225,6 @@ rotation = 1.5708
 
 [node name="sword" parent="weapon" instance=ExtResource("3_o85gs")]
 position = Vector2(0, -13)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
