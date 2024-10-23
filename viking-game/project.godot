@@ -14,7 +14,6 @@ config/name="Viking Game"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
-07bff4dd852d2d7265e7b6f6bdb7101028e4b71f
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
